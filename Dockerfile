@@ -1,9 +1,10 @@
-FROM continuumio/miniconda3:4.7.10
+FROM continuumio/miniconda3:4.12.0
 
 LABEL "repository"="https://github.com/ravipurohit1991/conda-package-publish-action"
-LABEL "maintainer"="Andrew Prokhorenkov <andrew.prokhorenkov@gmail.com>"
+LABEL "maintainer"="Ravi Purohit <purushot@esrf.fr>"
 
-RUN conda install -y anaconda-client conda-build
+RUN conda install -y conda-build conda-verify anaconda-client
 
 COPY entrypoint.sh /entrypoint.sh
+
 ENTRYPOINT ["/entrypoint.sh"]
