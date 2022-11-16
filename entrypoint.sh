@@ -23,7 +23,8 @@ check_if_meta_yaml_file_exists() {
 }
 
 build_package(){
-    conda build --output --check -c conda-forge --output-folder . .
+    ##conda build --output --check -c conda-forge --output-folder . .
+    conda mambabuild -c conda-forge --output-folder . .
     conda convert -p osx-64 linux-64/*.tar.bz2
     conda convert -p win-64 linux-64/*.tar.bz2
 }
@@ -36,7 +37,8 @@ upload_package(){
 }
 
 build_package_noarch(){
-    conda build --output --check -c conda-forge --output-folder . .
+    ##conda build --output --check -c conda-forge --output-folder . .
+    conda mambabuild -c conda-forge --output-folder . .
 }
 
 upload_package_noarch(){
