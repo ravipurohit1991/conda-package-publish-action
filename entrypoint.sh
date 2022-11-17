@@ -9,12 +9,6 @@ go_to_build_dir() {
     fi
 }
 
-go_to_build_dir_all() {
-    if [ ! -z $INPUT_SUBDIRALL ]; then
-        cd $INPUT_SUBDIRALL
-    fi
-}
-
 check_if_meta_yaml_file_exists() {
     if [ ! -f meta.yaml ]; then
         echo "meta.yaml must exist in the directory that is being packaged and published."
@@ -48,13 +42,8 @@ upload_package_noarch(){
     anaconda upload --label main noarch/*.tar.bz2
 }
 
-echo "Building No arch with mamba"
 go_to_build_dir
 check_if_meta_yaml_file_exists
 build_package_noarch
 upload_package_noarch
-echo "Building linux arch and converting to other architectures"
-go_to_build_dir_all
-check_if_meta_yaml_file_exists
-build_package
-upload_package
+
