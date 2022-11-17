@@ -31,6 +31,7 @@ build_package(){
 
 upload_package(){
     export ANACONDA_API_TOKEN=$INPUT_ANACONDATOKEN
+    conda config --set anaconda_upload yes
     anaconda upload --label main linux-64/*.tar.bz2
     anaconda upload --label main osx-64/*.tar.bz2
     anaconda upload --label main win-64/*.tar.bz2
@@ -43,16 +44,17 @@ build_package_noarch(){
 
 upload_package_noarch(){
     export ANACONDA_API_TOKEN=$INPUT_ANACONDATOKEN
+    conda config --set anaconda_upload yes
     anaconda upload --label main noarch/*.tar.bz2
 }
 
-
+echo "Building No arch with mamba"
 go_to_build_dir
-check_if_meta_yaml_file_exists
-build_package
-upload_package
-
-go_to_build_dir_all
 check_if_meta_yaml_file_exists
 build_package_noarch
 upload_package_noarch
+echo "Building linux arch and converting to other architectures"
+go_to_build_dir_all
+check_if_meta_yaml_file_exists
+build_package
+upload_package
