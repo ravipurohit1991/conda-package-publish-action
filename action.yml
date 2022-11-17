@@ -6,9 +6,6 @@ branding:
   color: 'purple'
 inputs: 
   subDir:
-    description: 'Sub-directory with conda noarch recipe'
-    default: '.'
-  subDirAll:
     description: 'Sub-directory with conda recipe'
     default: '.'
   AnacondaToken:
