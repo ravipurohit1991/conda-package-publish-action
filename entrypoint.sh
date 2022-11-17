@@ -44,6 +44,6 @@ upload_package_noarch(){
 
 go_to_build_dir
 check_if_meta_yaml_file_exists
-build_package_noarch
-upload_package_noarch
+build_package
+upload_package
 
